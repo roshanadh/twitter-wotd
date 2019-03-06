@@ -19,6 +19,7 @@ function tweetIt(){
     let tweetMsg = '';
     wotd.wordThink().then(data => {
         let word = data.word;
+        let meaning = data.meaning;
         tweetMsg = `The word for today is '${word}', ${meaning}`;
         console.log(tweetMsg);
 
