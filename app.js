@@ -4,7 +4,7 @@ const Twit = require('twit');
 const express = require('express');
 
 const app = express();
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 let T = new Twit({
     consumer_key: process.env.BOT_CONSUMER_KEY,
@@ -30,7 +30,8 @@ function tweetIt(){
     });
 }
 
-app.all('/botterman16', () => {
+app.all('/botterman16', (req, res) => {
+    res.status(200).send("This is the response!");
     tweetIt();
 });
 
