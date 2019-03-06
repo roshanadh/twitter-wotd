@@ -1,6 +1,10 @@
 const wotd = require('words-of-the-day');
 const schedule = require('node-schedule');
 const Twit = require('twit');
+const express = require('express');
+
+const app = express();
+const PORT = 5000 || process.env.PORT;
 
 let T = new Twit({
     consumer_key: process.env.BOT_CONSUMER_KEY,
@@ -26,8 +30,12 @@ function tweetIt(){
     });
 }
 
-//Tweet every midnight
-schedule.scheduleJob('0 0 * * *', tweetIt());
+app.all('/botterman16', tweetIt());
+app.listen(PORT, () => {
+    console.log(`Server is now listening to port ${PORT}`);
+})
+// Tweet every midnight
+// schedule.scheduleJob('0 0 * * *', tweetIt());
 
 
 
