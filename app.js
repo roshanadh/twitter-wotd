@@ -30,7 +30,10 @@ function tweetIt(){
     });
 }
 
-app.all('/botterman16', tweetIt());
+app.all('/botterman16', () => {
+    tweetIt();
+});
+
 app.listen(PORT, () => {
     console.log(`Server is now listening to port ${PORT}`);
 })
