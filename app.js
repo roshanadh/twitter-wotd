@@ -17,20 +17,16 @@ let T = new Twit({
 
 function tweetIt(){
     let tweetMsg = '';
-    // wotd.wordThink().then(data => {
-    //     let word = data.word;
-    //     tweetMsg = `The word for today is '${word}', ${meaning}`;
-    //     console.log(tweetMsg);
+    wotd.wordThink().then(data => {
+        let word = data.word;
+        tweetMsg = `The word for today is '${word}', ${meaning}`;
+        console.log(tweetMsg);
 
-    //     T.post('statuses/update', { status: tweetMsg }, function(err, data, response) {
-    //         if(err)
-    //             console.log(err);
-    //     });
+        T.post('statuses/update', { status: tweetMsg }, function(err, data, response) {
+            if(err)
+                console.log(err);
+        });
 
-    // });
-    T.post('statuses/update', { status: "Hello World. The next random number is: "+ Math.random()}, function(err, data, response) {
-        if(err)
-            console.log(err);
     });
 }
 
@@ -42,8 +38,7 @@ app.all('/botterman16', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is now listening to port ${PORT}`);
 })
-// Tweet every midnight
-// schedule.scheduleJob('0 0 * * *', tweetIt());
+
 
 
 
