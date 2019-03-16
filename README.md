@@ -5,7 +5,6 @@ Tweets word of the day from https://www.wordthink.com/
 https://twitter.com/botterMan16
 
 ## Deployment
-https://roshan-wotd.herokuapp.com/botterman16
-
+Uses *Heroku* for deployment
 ## HTTPS Monitor
 https://uptimerobot.com/ sends a request to the Heroku deployment URL every 24 hours and the bot awakens.
