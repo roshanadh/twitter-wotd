@@ -29,7 +29,7 @@ function tweetIt(){
 
         // Search if the tweet has already been tweeted by the account
         T.get('search/tweets', { q: '"' + tweetMsg +'" from:botterMan16', count: 100 }, function(err, data, response) {
-            if(data.statuses.length == 0){
+            if(typeof data.statuses == 'undefined' || data.statuses.length == 0){
                 // Tweet does not exist as of yet
                 console.log("Tweet IS NOT a duplicate, going to be tweeted!");
                 T.post('statuses/update', { status: tweetMsg }, function(err, data, response) {
