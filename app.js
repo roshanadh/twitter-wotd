@@ -1,5 +1,4 @@
 const wotd = require('words-of-the-day');
-const schedule = require('node-schedule');
 const Twit = require('twit');
 const express = require('express');
 
