@@ -42,6 +42,7 @@ function tweetIt(){
 
         lenTweetMsg = tweetMsg.length;
         console.log(tweetMsg, lenTweetMsg);
+        
         // Search if the tweet has already been tweeted by the account
         T.get('search/tweets', { q: '"' + tweetMsg +'" from:botterMan16', count: 100 }, function(err, data, response) {
             if(typeof data.statuses == 'undefined' || data.statuses.length == 0){
