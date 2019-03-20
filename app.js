@@ -49,7 +49,7 @@ function tweetIt(){
     });
 }
 
-app.all('/botterman16', (req, res) => {
+app.all('/daytheofword', (req, res) => {
     res.status(200).send("This is the response!");
     tweetIt();
 });
