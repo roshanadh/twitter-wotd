@@ -15,17 +15,33 @@ let T = new Twit({
 });
 
 function tweetIt(){
+    let preText = '';
     let tweetMsg = '';
-    var lenTweetMsg;
+    let hashTag = ' #WordOfTheDay';
+    let hashTags = ' #DailyWords #WordOfTheDay';
+    var lenPreText, lenTweetMsg, lenWordMeaning, lenHashTag, lenHashTags;
     wotd.wordThink().then(data => {
         let word = data.word;
         let meaning = data.meaning;
-        tweetMsg = `The word for today is '${word}', ${meaning}`;
-        lenTweetMsg = tweetMsg.length;
-        if(lenTweetMsg > 280)
-            tweetMsg = 'Have a good day everyone!';
-        console.log(tweetMsg);
+        
+        preText = "The word for today is '', ";
 
+        lenPreText = preText.length;
+        lenWordMeaning = word.length + meaning.length;
+        lenHashTag = hashTag.length;
+        lenHashTags = hashTags.length;
+
+        if(lenPreText + lenWordMeaning + lenHashTags <= 280)
+            tweetMsg = `The word for today is '${word}', ${meaning}${hashTags}`;         
+        else if(lenPreText + lenWordMeaning + lenHashTags > 280 && lenPreText + lenWordMeaning + lenHashTag <= 280)
+            tweetMsg = `The word for today is '${word}', ${meaning}${hashTag}`;
+        else if(lenPreText + lenWordMeaning + lenHashTag > 280 && lenPreText + lenWordMeaning <= 280)
+            tweetMsg = `The word for today is '${word}', ${meaning}`;
+        else
+            tweetMsg = 'Have a good day everyone!';
+
+        lenTweetMsg = tweetMsg.length;
+        console.log(tweetMsg, lenTweetMsg);
         // Search if the tweet has already been tweeted by the account
         T.get('search/tweets', { q: '"' + tweetMsg +'" from:botterMan16', count: 100 }, function(err, data, response) {
             if(typeof data.statuses == 'undefined' || data.statuses.length == 0){
