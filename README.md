@@ -4,7 +4,7 @@
 Tweets word of the day from https://www.wordthink.com/
 
 ## Bot
-https://twitter.com/botterMan16
+https://twitter.com/daytheofword
 
 ## Deployment
 Uses *Heroku* for deployment.
