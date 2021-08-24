@@ -55,38 +55,37 @@ const getFitTweet = async () => {
 
 	let tweet = "";
 	if (
-		`${preText} ${partOfSpeech}: ${meaning}. "${example}" ${hashTags}`
+		`${preText} ${partOfSpeech}: ${meaning} "${example}" ${hashTags}`
 			.length <= maxLength
 	) {
-		tweet = `${preText} ${partOfSpeech}: ${meaning}. "${example}" ${hashTags}`;
+		tweet = `${preText} ${partOfSpeech}: ${meaning} "${example}" ${hashTags}`;
 	} else if (
-		`${preText} ${partOfSpeech}: ${meaning}. "${example}" ${hashTag}`
+		`${preText} ${partOfSpeech}: ${meaning} "${example}" ${hashTag}`
 			.length <= maxLength
 	) {
-		tweet = `${preText} ${partOfSpeech}: ${meaning}. "${example}" ${hashTag}`;
+		tweet = `${preText} ${partOfSpeech}: ${meaning} "${example}" ${hashTag}`;
 	} else if (
-		`${preText} ${partOfSpeech}: ${meaning}. ${hashTags}`.length <=
+		`${preText} ${partOfSpeech}: ${meaning} ${hashTags}`.length <= maxLength
+	) {
+		tweet = `${preText} ${partOfSpeech}: ${meaning} ${hashTags}`;
+	} else if (
+		`${preText} ${partOfSpeech}: ${meaning} ${hashTag}`.length <= maxLength
+	) {
+		tweet = `${preText} ${partOfSpeech}: ${meaning} ${hashTag}`;
+	} else if (
+		`${word}, ${partOfSpeech}: ${meaning} "${example}" ${hashTags}`
+			.length <= maxLength
+	) {
+		tweet = `${word}, ${partOfSpeech}: ${meaning} ${hashTags}`;
+	} else if (
+		`${word}, ${partOfSpeech}: ${meaning} "${example}" ${hashTag}`.length <=
 		maxLength
 	) {
-		tweet = `${preText} ${partOfSpeech}: ${meaning}. ${hashTags}`;
+		tweet = `${word}, ${partOfSpeech}: ${meaning} "${example}" ${hashTag}`;
 	} else if (
-		`${preText} ${partOfSpeech}: ${meaning}. ${hashTag}`.length <= maxLength
+		`${word}, ${partOfSpeech}: ${meaning} ${hashTag}`.length <= maxLength
 	) {
-		tweet = `${preText} ${partOfSpeech}: ${meaning}. ${hashTag}`;
-	} else if (
-		`${word}, ${partOfSpeech}: ${meaning}. "${example}" ${hashTags}`
-			.length <= maxLength
-	) {
-		tweet = `${word}, ${partOfSpeech}: ${meaning}. ${hashTags}`;
-	} else if (
-		`${word}, ${partOfSpeech}: ${meaning}. "${example}" ${hashTag}`
-			.length <= maxLength
-	) {
-		tweet = `${word}, ${partOfSpeech}: ${meaning}. "${example}" ${hashTag}`;
-	} else if (
-		`${word}, ${partOfSpeech}: ${meaning}. ${hashTag}`.length <= maxLength
-	) {
-		tweet = `${word}, ${partOfSpeech}: ${meaning}. ${hashTag}`;
+		tweet = `${word}, ${partOfSpeech}: ${meaning} ${hashTag}`;
 	} else {
 		tweet = "Have a great day folks!";
 	}
