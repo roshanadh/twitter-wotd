@@ -98,7 +98,7 @@ const doesTweetExist = async (tweet) => {
 		"search/tweets",
 		{ q: '"' + tweet + '" from:daytheofword', count: 100 },
 		function (err, data, response) {
-			console.log("search/tweets response: ", JSON.parse(data));
+			console.log("search/tweets response: ", data);
 			if (
 				typeof data.statuses == "undefined" ||
 				data.statuses.length == 0
