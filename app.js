@@ -116,7 +116,7 @@ const doesTweetExist = (tweet) => {
 };
 
 const tweetIt = async () => {
-	const tweet = await getFitTweet();
+	let tweet = await getFitTweet();
 
 	const hasBeenTweeted = await doesTweetExist(tweet);
 
