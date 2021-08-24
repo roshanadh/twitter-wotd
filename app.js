@@ -41,7 +41,7 @@ const getWordOfTheDay = async () => {
 		});
 };
 
-const getFitTweet = () => {
+const getFitTweet = async () => {
 	const response = await getWordOfTheDay();
 	const preText = `Word for today is '${word},'`;
 	const word = response.word;
