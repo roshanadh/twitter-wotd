@@ -99,7 +99,6 @@ const doesTweetExist = (tweet) => {
 			"search/tweets",
 			{ q: '"' + tweet + '" from:daytheofword', count: 100 },
 			function (err, data, response) {
-				console.log("search/tweets response: ", data);
 				if (
 					typeof data.statuses == "undefined" ||
 					data.statuses.length === 0
@@ -136,6 +135,7 @@ const tweetIt = async () => {
 		{ status: tweet },
 		function (err, data, response) {
 			if (err) console.log(err, tweet);
+			else console.log("Tweeted successfully!");
 		}
 	);
 };
