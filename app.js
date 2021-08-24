@@ -117,14 +117,16 @@ const tweetIt = async () => {
 
 	const hasBeenTweeted = await doesTweetExist(tweet);
 
-	if (tweet !== "Have a great day folks!" && hasBeenTweeted) {
-		console.log("Tweet ALREADY EXISTS!");
-		tweet = "Have a great day folks!";
-		console.log(`Going to tweet: ${tweet}`);
-	} else {
-		console.log("Tweet is original!");
-		console.log(`Going to tweet: ${tweet}`);
+	if (tweet !== "Have a great day folks!") {
+		if (hasBeenTweeted) {
+			console.log("Tweet ALREADY EXISTS!");
+			tweet = "Have a great day folks!";
+		} else {
+			console.log("Tweet is original!");
+		}
 	}
+
+	console.log(`Going to tweet: ${tweet}`);
 
 	T.post(
 		"statuses/update",
