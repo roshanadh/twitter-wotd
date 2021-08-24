@@ -92,25 +92,27 @@ const getFitTweet = async () => {
 	return tweet;
 };
 
-const doesTweetExist = async (tweet) => {
-	// Search if the tweet has already been tweeted by the account
-	T.get(
-		"search/tweets",
-		{ q: '"' + tweet + '" from:daytheofword', count: 100 },
-		function (err, data, response) {
-			console.log("search/tweets response: ", data);
-			if (
-				typeof data.statuses == "undefined" ||
-				data.statuses.length == 0
-			) {
-				// Tweet does not exist as of yet
-				return false;
-			} else {
-				// Tweet already exists
-				return true;
+const doesTweetExist = (tweet) => {
+	return new Promise((resolve, reject) => {
+		// Search if the tweet has already been tweeted by the account
+		T.get(
+			"search/tweets",
+			{ q: '"' + tweet + '" from:daytheofword', count: 100 },
+			function (err, data, response) {
+				console.log("search/tweets response: ", data);
+				if (
+					typeof data.statuses == "undefined" ||
+					data.statuses.length === 0
+				) {
+					// Tweet does not exist as of yet
+					resolve(false);
+				} else {
+					// Tweet already exists
+					resolve(true);
+				}
 			}
-		}
-	);
+		);
+	});
 };
 
 const tweetIt = async () => {
