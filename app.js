@@ -19,26 +19,28 @@ let T = new Twit({
 	strictSSL: true, // optional - requires SSL certificates to be valid.
 });
 
-const getWordOfTheDay = async () => {
-	https
-		.get(url, (res) => {
-			let data = "";
+const getWordOfTheDay = () => {
+	return new Promise((resolve, reject) => {
+		https
+			.get(url, (res) => {
+				let data = "";
 
-			res.on("data", (chunk) => {
-				data += chunk;
-			});
+				res.on("data", (chunk) => {
+					data += chunk;
+				});
 
-			res.on("end", () => {
-				data = JSON.parse(data);
-				return data;
+				res.on("end", () => {
+					data = JSON.parse(data);
+					resolve(data);
+				});
+			})
+			.on("error", (error) => {
+				throw new Error(
+					"Error occurred while fetching word of the day:",
+					error
+				);
 			});
-		})
-		.on("error", (error) => {
-			throw new Error(
-				"Error occurred while fetching word of the day:",
-				error
-			);
-		});
+	});
 };
 
 const getFitTweet = async () => {
