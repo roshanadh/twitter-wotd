@@ -43,8 +43,8 @@ const getWordOfTheDay = async () => {
 
 const getFitTweet = async () => {
 	const response = await getWordOfTheDay();
-	const preText = `Word for today is '${word},'`;
 	const word = response.word;
+	const preText = `Word for today is '${word},'`;
 	const partOfSpeech = response.definitions[0].partOfSpeech;
 	const meaning = response.definitions[0].text;
 	const example = response.examples[0].text;
@@ -91,7 +91,7 @@ const getFitTweet = async () => {
 	return tweet;
 };
 
-const doesTweetExist = (tweet) => {
+const doesTweetExist = async (tweet) => {
 	// Search if the tweet has already been tweeted by the account
 	T.get(
 		"search/tweets",
@@ -112,9 +112,9 @@ const doesTweetExist = (tweet) => {
 };
 
 const tweetIt = async () => {
-	const tweet = getFitTweet();
+	const tweet = await getFitTweet();
 
-	const hasBeenTweeted = doesTweetExist(tweet);
+	const hasBeenTweeted = await doesTweetExist(tweet);
 
 	if (tweet !== "Have a great day folks!" && hasBeenTweeted) {
 		console.log("Tweet ALREADY EXISTS!");
