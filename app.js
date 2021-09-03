@@ -46,7 +46,7 @@ const getWordOfTheDay = () => {
 const getFitTweet = async () => {
 	const response = await getWordOfTheDay();
 	const word = response.word;
-	const preText = `Word for today is '${word},'`;
+	const preText = `Word for today is '${word}',`;
 	const partOfSpeech = response.definitions[0].partOfSpeech;
 	const meaning = response.definitions[0].text;
 	const example = response.examples[0].text;
